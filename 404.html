@@ -13,23 +13,22 @@
   <p class="muted">go.vdsai.se</p>
 </div>
 <script>
-  // ---- DEFINE YOUR SHORT LINKS HERE ----
+  // ---- SHORT SLUGS → DESTINATIONS ----
   const routes = {
-    "":     "https://vdsai.se",  // root → homepage
-    "meet": "https://vdsai.se"
+    "":     "https://vdsai.se",   // root → homepage
+    "meet": "https://vdsai.se"    // temp target (we can change later)
   };
 
   function trimSlashes(s){ return (s||"/").replace(/^\/+|\/+$/g,""); }
   const slug = trimSlashes(location.pathname);
   const base = Object.prototype.hasOwnProperty.call(routes, slug) ? routes[slug] : routes[""];
 
-  // Preserve incoming query (?cid=..., UTMs, etc.)
+  // Preserve all incoming query params (?cid=..., UTMs, etc.)
   const incoming = (location.search || "").replace(/^\?/, "");
   const target = incoming ? (base + (base.includes("?") ? "&" : "?") + incoming) : base;
 
-  // Update manual link for users with JS disabled
-  document.getElementById("manual").setAttribute("href", target);
-
-  // Perform redirect
+  // Manual link + redirect
+  document.getElementById?.("manual")?.setAttribute("href", target);
   try { window.location.replace(target); } catch { window.location.href = target; }
 </script>
+
